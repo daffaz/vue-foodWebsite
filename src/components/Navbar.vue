@@ -2,7 +2,11 @@
   <div>
     <nav class="navbar navbar-expand-lg navbar-light">
       <div class="container">
-        <a class="navbar-brand" href="#">Oresto</a>
+        <a class="navbar-brand" href="#">
+          <div class="logo bg-warning text-white p-2 px-3 rounded-pill">
+            Logo
+          </div>
+        </a>
         <button
           class="navbar-toggler"
           type="button"

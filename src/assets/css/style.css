@@ -4,3 +4,9 @@
 .router-link-exact-active {
   font-weight: 700;
 }
+.card {
+  border-radius: 20px;
+}
+.card-img-top {
+  border-radius: 15px 15px 0 0;
+}
