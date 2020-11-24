@@ -3,7 +3,7 @@
     <Navbar />
     <div class="container">
       <Hero />
-      <div class="row mt-5">
+      <div class="row mt-5 mb-4">
         <div class="col">
           <h2>Favorite <strong>menu</strong> today</h2>
         </div>
