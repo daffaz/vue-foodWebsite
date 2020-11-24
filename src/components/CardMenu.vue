@@ -1,5 +1,5 @@
 <template>
-  <div class="card shadow">
+  <div class="card shadow mb-4">
     <img :src="'/img/' + menu.gambar" class="card-img-top" />
     <div class="card-body text-center">
       <p class="text-danger font-weight-bold">Harga : Rp. {{ menu.harga }}</p>
