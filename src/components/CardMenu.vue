@@ -6,8 +6,10 @@
       <h4>
         {{ menu.nama }}
       </h4>
-      <a href="#" class="mt-5 btn btn-outline-danger btn-lg btn-block "
-        ><b-icon-cart3></b-icon-cart3> Order</a
+      <router-link
+        :to="'/menu/' + menu.id"
+        class="mt-5 btn btn-outline-danger btn-lg btn-block"
+        ><b-icon-cart3></b-icon-cart3> Order</router-link
       >
     </div>
   </div>
