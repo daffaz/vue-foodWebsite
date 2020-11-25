@@ -53,6 +53,7 @@ export default {
     return {
       foods: [],
       search: "",
+      cart: 0,
     };
   },
   methods: {
@@ -67,7 +68,7 @@ export default {
           this.setMenu(response.data);
           console.log(response.data);
         })
-        .catch(function(error) {
+        .catch(function (error) {
           // handle error
           console.log("Error", error);
         });
@@ -81,7 +82,7 @@ export default {
         this.setMenu(response.data);
         console.log(response.data);
       })
-      .catch(function(error) {
+      .catch(function (error) {
         // handle error
         console.log("Error", error);
       });

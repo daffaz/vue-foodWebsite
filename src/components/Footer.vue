@@ -3,7 +3,12 @@
     <hr />
     <div class="container">
       <div class="row">
-        <div class="col text-center">2020 copyright daffaz &copy;</div>
+        <div class="col text-center">
+          &copy; 2020 copyright
+          <a href="https://github.com/j3c118124" class="text-secondary"
+            >daffaz</a
+          >
+        </div>
       </div>
     </div>
   </footer>

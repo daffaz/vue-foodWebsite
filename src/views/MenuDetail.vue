@@ -13,21 +13,54 @@
                 class="breadcrumb-item active font-weight-bold text-dark"
                 aria-current="page"
               >
-                Menu order
+                Menu order ({{ menu.nama }})
               </li>
             </ol>
           </nav>
         </div>
       </div>
       <!-- Content -->
-      <div class="row">
+      <div class="row mt-2">
         <div class="col-lg-6">
-          <img :src="'../img/' + menu.gambar" />
+          <img
+            :src="'../img/' + menu.gambar"
+            class="img-fluid shadow rounded"
+          />
         </div>
-        <div class="col-lg-6 text-center">
+        <div class="col-lg-6">
           <h2>
             <strong>{{ menu.nama }}</strong>
           </h2>
+          <hr />
+          <h4>
+            Price: <strong class="text-danger">Rp. {{ menu.harga }}</strong>
+          </h4>
+          <p class="text-secondary mt-3">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Exercitationem, vero! Earum placeat non deserunt autem?
+          </p>
+          <form action="">
+            <div class="form-group">
+              <label for="pesanan">Quantity</label>
+              <input
+                type="number"
+                class="form-control w-50"
+                id="pesanan"
+                placeholder="1"
+              />
+            </div>
+            <div class="form-group">
+              <label for="keterangan">Add some notes here</label>
+              <textarea
+                class="form-control"
+                id="keterangan"
+                placeholder='example "make it spicy" '
+              ></textarea>
+            </div>
+            <button type="submit" class="btn btn-danger">
+              <b-icon-cart-check-fill></b-icon-cart-check-fill> Order
+            </button>
+          </form>
         </div>
       </div>
     </div>

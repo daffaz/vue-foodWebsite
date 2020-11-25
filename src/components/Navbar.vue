@@ -3,7 +3,7 @@
     <nav class="navbar navbar-expand-lg navbar-light">
       <div class="container">
         <a class="navbar-brand" href="/">
-          <div class="logo bg-warning text-white p-2 px-3 rounded-pill">
+          <div class="logo bg-warning font-weight-bold p-2 px-3 rounded-pill">
             Logo
           </div>
         </a>
@@ -32,7 +32,7 @@
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
               <router-link class="nav-link" to="/keranjang">
-                Keranjang <b-icon-cart></b-icon-cart>
+                Cart <b-icon-cart></b-icon-cart>
                 <span class="badge badge-warning ml-2">0</span>
               </router-link>
             </li>
