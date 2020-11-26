@@ -33,7 +33,9 @@
             <li class="nav-item">
               <router-link class="nav-link" to="/keranjang">
                 Cart <b-icon-cart></b-icon-cart>
-                <span class="badge badge-warning ml-2">0</span>
+                <span class="badge badge-warning ml-2 text-white">{{
+                  counter.length
+                }}</span>
               </router-link>
             </li>
           </ul>
@@ -45,8 +47,33 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "Navbar",
+  data() {
+    return {
+      counter: [],
+    };
+  },
+  methods: {
+    setCounter(data) {
+      this.counter = data;
+    },
+  },
+  mounted() {
+    axios
+      .get("http://localhost:3000/keranjangs/")
+      .then((response) => {
+        // SAAT SUKSES / BERHASIL
+        this.setCounter(response.data);
+        console.log(response.data);
+      })
+      .catch(function (error) {
+        // SAAT GAGAL / ERROR
+        console.log("Error", error);
+      });
+  },
 };
 </script>
 
