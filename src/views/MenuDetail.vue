@@ -39,25 +39,30 @@
             Lorem ipsum dolor sit amet consectetur adipisicing elit.
             Exercitationem, vero! Earum placeat non deserunt autem?
           </p>
-          <form action="">
+          <form @submit.prevent="" action="">
             <div class="form-group">
               <label for="pesanan">Quantity</label>
               <input
                 type="number"
                 class="form-control w-50"
                 id="pesanan"
-                placeholder="1"
+                placeholder="-"
+                v-model="order.howMany"
               />
             </div>
             <div class="form-group">
-              <label for="keterangan">Add some notes here</label>
+              <label for="keterangan"
+                >Add some notes here
+                <span class="text-secondary">(Optional)</span></label
+              >
               <textarea
                 class="form-control"
                 id="keterangan"
-                placeholder='example "make it spicy" '
+                placeholder='example "make it spicy"'
+                v-model="order.notes"
               ></textarea>
             </div>
-            <button type="submit" class="btn btn-danger">
+            <button type="submit" class="btn btn-danger" @click="ordering">
               <b-icon-cart-check-fill></b-icon-cart-check-fill> Order
             </button>
           </form>
@@ -79,23 +84,51 @@ export default {
   data() {
     return {
       menu: {},
+      order: {},
     };
   },
   methods: {
     setMenu(data) {
       this.menu = data;
     },
+    ordering() {
+      if (this.order.howMany) {
+        this.order.menu = this.menu;
+        axios
+          .post("http://localhost:3000/keranjangs", this.order)
+          .then(() => {
+            this.$router.push({ path: "/cart" });
+            console.log("Berhasil");
+            this.$toast.success("Order added to cart.", {
+              type: "success",
+              position: "top-right",
+              duration: 3000,
+              dismissable: true,
+            });
+          })
+          .catch(() => {
+            console.log("Gagal");
+          });
+      } else {
+        this.$toast.warning("Quantity of the food must be filled.", {
+          type: "warning",
+          position: "top-right",
+          duration: 3000,
+          dismissable: true,
+        });
+      }
+    },
   },
   mounted() {
     axios
       .get("http://localhost:3000/menus/" + this.$route.params.id)
       .then((response) => {
-        // handle success
+        // SAAT SUKSES / BERHASIL
         this.setMenu(response.data);
         console.log(response.data);
       })
       .catch(function (error) {
-        // handle error
+        // SAAT GAGAL / ERROR
         console.log("Error", error);
       });
   },
