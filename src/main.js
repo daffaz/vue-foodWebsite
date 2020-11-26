@@ -1,12 +1,15 @@
 import Vue from "vue";
+import VueToast from "vue-toast-notification";
 import App from "./App.vue";
 import router from "./router";
 import { BootstrapVue, BootstrapVueIcons } from "bootstrap-vue";
 
+import "vue-toast-notification/dist/theme-sugar.css";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
 import "./assets/css/style.css";
 
+Vue.use(VueToast);
 Vue.use(BootstrapVue);
 Vue.use(BootstrapVueIcons);
 
