@@ -2,7 +2,7 @@
   <div class="menu-detail">
     <Navbar />
     <div class="container">
-      <div class="row mt-5">
+      <div class="row mt-4">
         <div class="col">
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb bg-transparent p-0">
@@ -46,6 +46,7 @@
                 type="number"
                 class="form-control w-50"
                 id="pesanan"
+                min="1"
                 placeholder="-"
                 v-model="order.howMany"
               />
