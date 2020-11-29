@@ -31,10 +31,10 @@
 
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <router-link class="nav-link" to="/keranjang">
+              <router-link class="nav-link" to="/cart">
                 Cart <b-icon-cart></b-icon-cart>
                 <span class="badge badge-warning ml-2 text-white">{{
-                  counter.length
+                  updateKeranjang ? updateKeranjang.length : counter.length
                 }}</span>
               </router-link>
             </li>
@@ -51,6 +51,11 @@ import axios from "axios";
 
 export default {
   name: "Navbar",
+  props: {
+    updateKeranjang: {
+      required: true,
+    },
+  },
   data() {
     return {
       counter: [],
