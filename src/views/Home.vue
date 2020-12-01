@@ -32,6 +32,14 @@ import axios from "axios";
 
 export default {
   name: "Home",
+  watch: {
+    $route: {
+      handler: (to) => {
+        document.title = to.meta.title || "Vueood";
+      },
+      immediate: true,
+    },
+  },
   components: {
     Navbar,
     Hero,
@@ -55,7 +63,7 @@ export default {
         this.setMenu(response.data);
         console.log(response.data);
       })
-      .catch(function(error) {
+      .catch(function (error) {
         // handle error
         console.log("Error", error);
       });

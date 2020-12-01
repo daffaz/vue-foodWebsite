@@ -1,48 +1,39 @@
 <template>
   <div>
-    <nav class="navbar navbar-expand-lg navbar-light">
+    <b-navbar toggleable="lg" type="light" variant="transparent">
       <div class="container">
-        <a class="navbar-brand" href="/">
-          <div class="logo bg-warning font-weight-bold p-2 px-3 rounded-pill">
-            Logo
-          </div>
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
+        <b-navbar-brand href="/" class="bg-warning text-white rounded px-1"
+          ><strong>Logo</strong></b-navbar-brand
         >
-          <span class="navbar-toggler-icon"></span>
-        </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <router-link class="nav-link" to="/">Home</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link class="nav-link" to="/menu">Menu</router-link>
-            </li>
-          </ul>
+        <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <router-link class="nav-link" to="/cart">
-                Cart <b-icon-cart></b-icon-cart>
-                <span class="badge badge-warning ml-2 text-white">{{
-                  updateKeranjang ? updateKeranjang.length : counter.length
-                }}</span>
-              </router-link>
-            </li>
-          </ul>
-        </div>
+        <b-collapse id="nav-collapse" is-nav>
+          <b-navbar-nav>
+            <b-nav-item
+              ><router-link class="nav-link" to="/"
+                >Home</router-link
+              ></b-nav-item
+            >
+            <b-nav-item
+              ><router-link class="nav-link" to="/menu"
+                >Menu</router-link
+              ></b-nav-item
+            >
+          </b-navbar-nav>
+
+          <!-- Right aligned nav items -->
+          <b-navbar-nav class="ml-auto">
+            <router-link class="nav-link" to="/cart">
+              Cart <b-icon-cart></b-icon-cart>
+              <span class="badge badge-warning ml-2 text-white">{{
+                updateKeranjang ? updateKeranjang.length : counter.length
+              }}</span>
+            </router-link>
+          </b-navbar-nav>
+        </b-collapse>
       </div>
-      <!-- End of container -->
-    </nav>
+    </b-navbar>
   </div>
 </template>
 
@@ -51,11 +42,7 @@ import axios from "axios";
 
 export default {
   name: "Navbar",
-  props: {
-    updateKeranjang: {
-      required: true,
-    },
-  },
+  props: ["updateKeranjang"],
   data() {
     return {
       counter: [],

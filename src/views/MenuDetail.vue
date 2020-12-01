@@ -82,6 +82,14 @@ export default {
   components: {
     Navbar,
   },
+  watch: {
+    $route: {
+      handler: (to) => {
+        document.title = to.meta.title || "Vueood";
+      },
+      immediate: true,
+    },
+  },
   data() {
     return {
       menu: {},

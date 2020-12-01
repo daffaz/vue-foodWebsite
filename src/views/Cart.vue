@@ -84,6 +84,41 @@
           </div>
         </div>
       </div>
+
+      <!-- FORM Checkout -->
+      <div class="row justify-content-end">
+        <div class="col-lg-4">
+          <form @submit.prevent>
+            <div class="form-group">
+              <label for="nama">Nama: </label>
+              <input
+                type="text"
+                class="form-control"
+                id="nama"
+                v-model="order.nama"
+              />
+            </div>
+            <div class="form-group">
+              <label for="no-meja">Table number</label>
+              <input
+                type="number"
+                class="form-control"
+                id="no-meja"
+                min="1"
+                placeholder="-"
+                v-model="order.nomorMeja"
+              />
+            </div>
+            <button
+              type="submit"
+              class="btn btn-danger float-right"
+              @click="checkout"
+            >
+              <b-icon-cart-check-fill></b-icon-cart-check-fill> Order
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -94,15 +129,58 @@ import axios from "axios";
 
 export default {
   name: "Cart",
+  watch: {
+    $route: {
+      handler: (to) => {
+        document.title = to.meta.title || "Vueood";
+      },
+      immediate: true,
+    },
+  },
   components: {
     Navbar,
   },
   data: function () {
     return {
       carts: [],
+      order: {},
     };
   },
   methods: {
+    checkout() {
+      if (this.order.nama && this.order.nomorMeja) {
+        this.order.carts = this.carts;
+        axios
+          .post("http://localhost:3000/pesanans", this.order)
+          .then(() => {
+            // Proses delete isi keranjang setelah checkout
+            this.carts.map((cart) => {
+              axios
+                .delete("http://localhost:3000/keranjangs/" + cart.id)
+                // .then(confirm("You sure want to delete food?"))
+                .catch((error) => console.log(error));
+            });
+
+            this.$router.push({ path: "/order-success" });
+            console.log("ORDER", this.order);
+            this.$toast.success("Your order udah sukses", {
+              type: "success",
+              position: "top-right",
+              duration: 3000,
+              dismissable: true,
+            });
+          })
+          .catch((error) => console.log(error));
+      } else {
+        this.$toast.error("Name and table number must be filled.", {
+          type: "error",
+          position: "top-right",
+          duration: 3000,
+          dismissable: true,
+        });
+      }
+      // console.log("pesan", this.order);
+    },
     setCart(data) {
       this.carts = data;
     },
@@ -112,7 +190,7 @@ export default {
         // .then(confirm("You sure want to delete food?"))
         .then(() => {
           this.$toast.warning("Food deleted.", {
-            type: "error",
+            type: "warning",
             position: "top-right",
             duration: 3000,
             dismissable: true,
@@ -129,7 +207,9 @@ export default {
   mounted: function () {
     axios
       .get("http://localhost:3000/keranjangs")
-      .then((response) => this.setCart(response.data))
+      .then((response) => {
+        this.setCart(response.data);
+      })
       .catch((error) => console.log(error));
   },
   computed: {

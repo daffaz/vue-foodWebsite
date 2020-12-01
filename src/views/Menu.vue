@@ -49,6 +49,14 @@ export default {
     Navbar,
     CardMenu,
   },
+  watch: {
+    $route: {
+      handler: (to) => {
+        document.title = to.meta.title || "Vueood";
+      },
+      immediate: true,
+    },
+  },
   data() {
     return {
       foods: [],
@@ -62,7 +70,10 @@ export default {
     },
     searchFood() {
       axios
-        .get("http://localhost:3000/menus?q=" + this.search)
+        .get(
+          "https://my-json-server.typicode.com/j3c118124/vue-foodWebsite/menus?q=" +
+            this.search
+        )
         .then((response) => {
           // handle success
           this.setMenu(response.data);
@@ -76,11 +87,13 @@ export default {
   },
   mounted() {
     axios
-      .get("http://localhost:3000/menus")
+      .get(
+        "https://my-json-server.typicode.com/j3c118124/vue-foodWebsite/menus"
+      )
       .then((response) => {
         // handle success
         this.setMenu(response.data);
-        console.log(response.data);
+        console.log("Menu", response.data);
       })
       .catch(function (error) {
         // handle error
