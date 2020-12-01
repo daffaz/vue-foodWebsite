@@ -99,6 +99,31 @@
       "gambar": "lontong-opor-ayam.jpg"
     }
   ],
-  "keranjangs": [],
+  "keranjangs": [
+    {
+      "howMany": "2",
+      "menu": {
+        "id": 1,
+        "kode": "K-01",
+        "nama": "Sate Ayam",
+        "harga": 16000,
+        "is_ready": true,
+        "gambar": "sate-ayam.jpg"
+      },
+      "id": 2
+    },
+    {
+      "howMany": "4",
+      "menu": {
+        "id": 6,
+        "kode": "K-06",
+        "nama": "Bakso",
+        "harga": 10000,
+        "is_ready": true,
+        "gambar": "bakso.jpg"
+      },
+      "id": 3
+    }
+  ],
   "pesanans": []
 }
