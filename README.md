@@ -1,4 +1,6 @@
 # vue-foods
+link  : https://silly-murdock-bf9ccd.netlify.app/menu
+(Some of the feature is not working, because it was developed with jsonserver)
 
 ## Project setup
 ```
